@@ -58,5 +58,5 @@ const FuncModel = connection.define('funcionarios', {
     }   
 })
 
-
+// FuncModel.sync({force: true})
 module.exports = FuncModel

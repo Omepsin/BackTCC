@@ -3,6 +3,12 @@ const router = express.Router()
 const Func = require("./funcModel")
 const bcrypt = require("bcryptjs")
 
+router.get("/dash/func", (req, res) => {
+    Func.findAll().then(funcionarios =>{
+        res.render("func-dash", {funcionarios: funcionarios})
+    })
+})
+
 router.get("/func/cadastrar", (req, res) => {
     res.render("func-cadastrar")
 })

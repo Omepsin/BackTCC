@@ -3,6 +3,11 @@ const router = express.Router()
 const Users = require("./userModel")
 const bcrypt = require("bcryptjs")
 
+router.get("/dash/users", (req, res) => {
+    Users.findAll().then(users =>{
+        res.render("user-dash", {users: users})
+    })
+})
 router.get("/cadastrar", (req, res) => {
     res.render("cadastrar")
 })

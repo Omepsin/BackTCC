@@ -53,4 +53,5 @@ const UserModel = connection.define('users', {
     }
 })
 
+// UserModel.sync({force: true})
 module.exports = UserModel
