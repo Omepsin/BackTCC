@@ -26,8 +26,8 @@ router.post("/func/create", (req, res) => {
     const email = req.body.email
     const senha = req.body.senha
 
-    Func.findOne({where:{email: email}}).then(func => {
-        if(func == undefined){
+    Func.findOne({where:{email: email}}).then(funcionarios => {
+        if(funcionarios == undefined){
             const salt = bcrypt.genSaltSync(10)
             const hash = bcrypt.hashSync(senha, salt)
 
@@ -59,18 +59,18 @@ router.get("/func/login", (req, res) => {
     res.render("func-login")
 })
 
-router.post("/authenticate", (req, res) =>{
+router.post("/funcauthenticate", (req, res) =>{
     const email = req.body.email
     const senha = req.body.senha
 
-    Func.findOne({where:{email: email}}).then(user => {
-        if(user != undefined){
-            const correct = bcrypt.compareSync(senha, user.senha)
+    Func.findOne({where:{email: email}}).then(funcionarios => {
+        if(funcionarios != undefined){
+            const correct = bcrypt.compareSync(senha, funcionarios.senha)
 
             if(correct){
-                req.session.user = {
-                    id: user.id,
-                    email: user.email
+                req.session.funcionarios = {
+                    id: funcionarios.id,
+                    email: funcionarios.email
                 }
                 res.redirect("/")
             }else{
