@@ -10,6 +10,9 @@ const userModel = require("./user/userModel")
 const funcController = require("./funcionarios/funcController")
 const funcModel = require("./funcionarios/funcModel")
 
+const prodController = require("./produtos/produtosController")
+const prodModel = require("./produtos/produtosModel")
+
 connection
     .authenticate()
         .then(() =>{
@@ -29,11 +32,15 @@ app.use(session({
 }))
 app.use("/", userController)
 app.use("/", funcController)
+app.use("/", prodController)
+
 
 app.get("/", (req, res) =>{
     res.render("sla")
 })
-
+app.get("/b", (req, res) =>{
+    res.render("deuerrado")
+})
 app.listen(3660, function(erro){
     if(erro)
         console.log("Erro ao inicializar o servidor")
